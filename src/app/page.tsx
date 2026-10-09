@@ -4,7 +4,6 @@ import Link from "next/link";
 export default function Home() {
 
   const todaysDate = new Date().toLocaleDateString('bn-BD',{dateStyle:'full'})
-  console.log(todaysDate);
 
   return (
     <div>

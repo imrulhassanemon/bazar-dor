@@ -9,13 +9,13 @@ import {
   LockKeyhole,
   Eye,
   EyeOff,
-  //   Github,
 } from "lucide-react";
 import { email, object } from "better-auth";
-import { signIn, signUp } from "@/lib/auth-client";
+import { authClient, signIn, signUp } from "@/lib/auth-client";
 import { error } from "console";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import Image from "next/image";
 
 type AuthFormProps = {
   mode: "signup" | "signin";
@@ -100,6 +100,16 @@ export default function AuthForm({ mode }: AuthFormProps) {
   }
   console.log(error);
   };
+
+  const handleGoogleSignIn = async () => {
+    const data = await authClient.signIn.social({
+      provider:'google'
+    })
+    console.log(data);
+    toast.success('সফল ভাবে সাইন ইন হয়েছে।')
+  }
+
+
 
   const inputClass =
     "w-full rounded-xl border border-gray-200 bg-[#fbfdfb] py-3 pl-11 pr-11 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10";
@@ -303,6 +313,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
           {/* Social buttons: UI only */}
           <div className="grid grid-cols-2 gap-3">
             <button
+            onClick={handleGoogleSignIn}
               type="button"
               className="flex items-center justify-center gap-2 rounded-xl border border-gray-200 px-3 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
             >
@@ -331,7 +342,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
               type="button"
               className="flex items-center justify-center gap-2 rounded-xl border border-gray-200 px-3 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
             >
-              {/* <Github size={18} /> */}
+              <Image width={20} height={20} src={'/github.png'} alt="" />
               GitHub
             </button>
           </div>
