@@ -9,7 +9,8 @@ import NavLink from "./NavLink";
 const Navbar = async() => {
 
     // const res = await fetch('https://api.abcz.workers.dev/api/bazardor/categories')//api-2
-    const res = await fetch('https://api.abcz.workers.dev/api/bazardor/categories') //api-2
+    // const res = await fetch('https://api.abcz.workers.dev/api/bazardor/categories') //api-2
+    const res = await fetch('https://openapi.programming-hero.com/api/bazardor/categories') //api-main
     const data = await res.json()
 
     // const data = [

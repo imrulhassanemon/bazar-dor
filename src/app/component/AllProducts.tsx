@@ -5,7 +5,8 @@ import Link from "next/link";
 
 const AllProducts = async () => {
   // const res = await fetch('https://api.api-store.workers.dev/api/bazardor/products')//api - 1
-  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products"); //api - 2
+  // const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products"); //api - 2
+  const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products"); //api - 2
   const allProducts: MarketPrice[] = await res.json();
 
   return (

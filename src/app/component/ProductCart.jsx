@@ -16,7 +16,10 @@
             {product.nameBn}
           </h3>
           <p className="text-sm text-[#7d8980]">
-            প্রতি {product.unit === "kg" ? "কেজিতে" : product.unit}
+            প্রতি {product.unit === "kg" ? "কেজি" : ''}
+            {product.unit==='litre'?'লিটার':''}
+            {product.unit==='piece'?'পিস':''}
+            {product.unit==='dozen'?'ডজন':''}
           </p>
         </div>
       </div>
@@ -26,7 +29,7 @@
         <div>
           <p className="text-sm text-[#7d8980]">আজকের দাম</p>
           <p className="text-[21px] font-bold leading-7 text-[#14251b]">
-            ৳ {product.today} <span className="text-base">টাকা</span>
+            ৳ {product.today.toLocaleString('bn-BD')} <span className="text-base">টাকা</span>
           </p>
         </div>
 

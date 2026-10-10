@@ -1,17 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Noto_Serif_Bengali } from "next/font/google";
 import "./globals.css";
 import Navbar from "./component/Navbar";
 import { ToastContainer } from "react-toastify";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const notoSerifBengali = Noto_Serif_Bengali({
+  subsets: ["latin", "bengali"],
 });
 
 export const metadata: Metadata = {
@@ -24,7 +18,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-theme='light'
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${notoSerifBengali.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#F0F5F0]">
         <Navbar/>

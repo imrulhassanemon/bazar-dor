@@ -6,7 +6,6 @@ export async function proxy(request: NextRequest) {
     const session = await auth.api.getSession({
         headers: await headers()
     })
-    // const res = await fetch('')
 
     if(!session) {
         return NextResponse.redirect(new URL("/signin", request.url));
@@ -16,5 +15,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/product/:path"], // Specify the routes the middleware applies to
+  matcher: ["/product/:path*", '/profile'], // Specify the routes the middleware applies to
 };

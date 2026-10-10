@@ -55,7 +55,6 @@ const unitLabel = (unit: string) => {
 function ProductDetails({ product }: ProductDetailsProps) {
   const { change } = product;
 
-  console.log(change, product);
 
   const changeColor =
     change.dir === "up"
@@ -104,8 +103,8 @@ function ProductDetails({ product }: ProductDetailsProps) {
                 গতকালের তুলনায় আজকে{" "}
               {change.dir === "up" ? (
                 <>
-                  <span className="font-semibold">বেড়েছে </span>
-                  {increasedtaka}
+                  <span className="font-semibold"> বেড়েছে </span>
+                  {increasedtaka.toLocaleString('bn-BD')}
                 </>
               ) : (
                 <>
@@ -237,7 +236,7 @@ export default async function ProductDetailsPage({ params }: PageProps) {
   const { id } = await params;
 
   const res = await fetch(
-    `https://api.abcz.workers.dev/api/bazardor/products/${id}`,
+    `https://openapi.programming-hero.com/api/bazardor/products/${id}`, //api main
     { cache: "no-store" },
   );
 
