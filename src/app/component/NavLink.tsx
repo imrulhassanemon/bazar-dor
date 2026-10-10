@@ -3,13 +3,19 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const NavLink = ({data}) => {
+interface CategoryNavItem {
+  id: string;
+  icon: React.ReactNode;
+  nameBn: string;
+}
+
+const NavLink = ({ data }: { data: CategoryNavItem[] }) => {
 
     const pathname = usePathname();
     return (
         <div>
             <div className="flex gap-5 mt-5 max-w-7xl mx-auto">
-      {data.map((n) => {
+      {data.map((n: CategoryNavItem) => {
         const isActive = pathname === `/category/${n.id}`;
 
         return (

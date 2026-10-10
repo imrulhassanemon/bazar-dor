@@ -1,6 +1,31 @@
 import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
 
+interface Product {
+  id: number;
+  slug: string;
+  nameBn: string;
+  category: string;
+  categoryNameBn: string;
+  categoryIcon: string;
+  unit: string;
+  image: string;
+  today: number;
+  yesterday: number;
+  lastWeek: number;
+  lastMonth: number;
+  change: {
+    dir: "up" | "down";
+    pct: number;
+  };
+  markets: Array<{
+    market: string;
+    division: string;
+    min: number;
+    max: number;
+  }>;
+}
+
 const Marquee = async () => {
   // const res = await fetch("https://api.api-store.workers.dev/api/bazardor/products",); //api - 1
   // const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products",); //api - 2
@@ -15,7 +40,7 @@ const Marquee = async () => {
         duration={10}
         >
           <div className="group flex w-max animate-marquee hover:[animation-play-state:paused]">
-            {data.map((product, index) => {
+            {data.map((product: Product, index: number) => {
               const isUp = product.change.dir === "up";
 
               return (
