@@ -34,7 +34,8 @@ import ProductCart from './ProductCart.jsx';
 
 const IncreasePrice = async () => {
 
-    const res = await fetch('https://api.api-store.workers.dev/api/bazardor/products')
+    // const res = await fetch('https://api.api-store.workers.dev/api/bazardor/products')//api - 1
+    const res = await fetch('https://api.abcz.workers.dev/api/bazardor/products')//api - 2
     const data = await res.json()
 
     const increasedProducts : MarketPrice[] = data.filter((product : MarketPrice) => product.change.dir ==='up')
@@ -45,7 +46,7 @@ const IncreasePrice = async () => {
         <div className='max-w-7xl mx-auto mt-5'>
             <h1 className='text-2xl font-bold mb-3'> <span className="text-red-500">▲</span> আজ দাম বেড়েছে</h1>
             <div className='grid grid-cols-3 gap-5'>
-                {products.map((product) => <Link href={`/product/${product.slug}`} key={product.id}>
+                {products.map((product) => <Link href={`/product/${product.id}`} key={product.id}>
                 <ProductCart product={product} /></Link>)}
             </div>
         </div>

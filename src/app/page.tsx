@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import IncreasePrice from "./component/IncreasePrice";
+import DecreasePrice from "./component/DecreasePrice";
+import AllProducts from "./component/AllProducts";
 
 export default function Home() {
 
@@ -30,7 +32,7 @@ export default function Home() {
               জায়গায়।{" "}
             </p>{" "}
             <Link
-              href="/products"
+              href="#allproduct"
               className="mt-6 inline-flex min-h-11 items-center justify-center rounded-lg bg-[#008b43] px-5 py-3 text-sm font-bold text-white shadow-md shadow-emerald-800/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#007538] hover:shadow-lg sm:text-base"
             >
               {" "}
@@ -135,6 +137,10 @@ export default function Home() {
       </section>
 
       <IncreasePrice/>
+      <DecreasePrice/>
+      <div id="allproduct" className="scroll-mt-20">
+        <AllProducts  />
+      </div>
     </div>
   );
 }
