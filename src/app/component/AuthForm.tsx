@@ -109,6 +109,13 @@ export default function AuthForm({ mode }: AuthFormProps) {
     toast.success('সফল ভাবে সাইন ইন হয়েছে।')
   }
 
+  const handleGithubLogin = async () => {
+    const data = await authClient.signIn.social({
+      provider:'github'
+    })
+    console.log(data);
+    toast.success('সফল ভাবে সাইন ইন হয়েছে।')
+  }
 
 
   const inputClass =
@@ -339,6 +346,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
             </button>
 
             <button
+            onClick={handleGithubLogin}
               type="button"
               className="flex items-center justify-center gap-2 rounded-xl border border-gray-200 px-3 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
             >
@@ -351,7 +359,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
           <p className="mt-6 text-center text-sm text-gray-500">
             {isSignup ? "আগেই অ্যাকাউন্ট আছে?" : "অ্যাকাউন্ট নেই?"}{" "}
             <Link
-              href={isSignup ? "/login" : "/signup"}
+              href={isSignup ? "/signin" : "/signup"}
               className="font-bold text-emerald-700 hover:underline"
             >
               {isSignup ? "সাইন ইন করুন" : "অ্যাকাউন্ট তৈরি করুন"}

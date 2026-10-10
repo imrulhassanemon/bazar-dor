@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import IncreasePrice from "./component/IncreasePrice";
 
 export default function Home() {
 
@@ -9,7 +10,7 @@ export default function Home() {
     <div>
       <section className="bg-[#f0f5f0] px-3 py-3 sm:px-5 lg:px-6">
         {" "}
-        <div className="mx-auto grid min-h-[340px] max-w-[1400px] grid-cols-1 items-center overflow-hidden rounded-[28px] border border-[#dce6dd] bg-[#fbfdfb] px-5 py-8 sm:px-8 md:min-h-[370px] md:grid-cols-[1.3fr_0.7fr] md:px-10 lg:min-h-[425px] lg:px-16">
+        <div className="mx-auto grid min-h-85 max-w-7xl grid-cols-1 items-center overflow-hidden rounded-[28px] border border-[#dce6dd] bg-[#fbfdfb] px-5 py-8 sm:px-8 md:min-h-[370px] md:grid-cols-[1.3fr_0.7fr] md:px-10 lg:min-h-[425px] lg:px-16">
           {" "}
           {/* Left content */}{" "}
           <div className="relative z-10 max-w-[680px]">
@@ -132,6 +133,8 @@ export default function Home() {
           </div>{" "}
         </div>{" "}
       </section>
+
+      <IncreasePrice/>
     </div>
   );
 }

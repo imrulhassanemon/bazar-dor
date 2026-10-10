@@ -26,9 +26,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-theme='light'
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-[#F0F5F0]">
         <Navbar/>
-        <main>
+        <main className="">
           <ToastContainer/>
           {children}
         </main>

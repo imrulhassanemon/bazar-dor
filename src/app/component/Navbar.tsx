@@ -3,21 +3,23 @@
 import Link from "next/link";
 import { ShoppingCart, Menu } from "lucide-react";
 import Buttons from "./Buttons";
+import Marquee from "./Marquee";
+import NavLink from "./NavLink";
 
 const Navbar = async() => {
 
-    // const res = await fetch('https://api.abcz.workers.dev/api/bazardor/categories')
-    // const data = await res.json()
-    // console.log(data);
+    const res = await fetch('https://api.abcz.workers.dev/api/bazardor/categories')
+    const data = await res.json()
 
-    const data = [
-        {
-            id: 'api missing ',
-            icon:'missing',
-            nameBn: 'missing'
-        }
+    // const data = [
+    //     {
+    //         id: 'api missing ',
+    //         icon:'missing',
+    //         nameBn: 'missing'
+    //     }
+    // ]
 
-    ]
+    const date = new Date().toLocaleDateString('bn-BD', {dateStyle:'full'})
 
   return (
     <div>
@@ -38,7 +40,7 @@ const Navbar = async() => {
               বাজার দর
             </span>
             <span className="mt-1 text-xs font-medium text-gray-500">
-              সহজলভ্য, অনলাইন বাজার
+              {date}
             </span>
           </div>
         </Link>
@@ -47,9 +49,13 @@ const Navbar = async() => {
         <Buttons/>
       </nav>
     </header>
-    <div className="flex gap-5 mt-5 max-w-7xl mx-auto  ">
+    {/* <div className="flex gap-5 mt-5 max-w-7xl mx-auto  ">
         {data.map(n => <Link href={`${n.id}`} className=" px-2" key={n.id}>{n.icon}{n.nameBn}</Link>)}
+    </div> */}
+    <div>
+      <NavLink data={data}/>
     </div>
+    <Marquee/>
     </div>
   );
 };
