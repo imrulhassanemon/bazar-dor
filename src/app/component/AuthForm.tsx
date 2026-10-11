@@ -32,91 +32,127 @@ export default function AuthForm({ mode }: AuthFormProps) {
   const router = useRouter();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    
     e.preventDefault();
 
-  const formData = new FormData(e.currentTarget);
+    const formData = new FormData(e.currentTarget);
 
-  const name = String(formData.get("name") ?? "").trim();
-  const email = String(formData.get("email") ?? "").trim();
-  const password = String(formData.get("password") ?? "");
-  const confirmPassword = String(formData.get("confirmPassword") ?? "");
+    const name = String(formData.get("name") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const password = String(formData.get("password") ?? "");
+    const confirmPassword = String(formData.get("confirmPassword") ?? "");
 
-  if (isSignup && password !== confirmPassword) {
-    toast.error("দুটি পাসওয়ার্ড মিলছে না।");
-    console.log(error);
-    return;
-  }
-
-  if (password.length < 8) {
-    toast.error("পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে।");
-    console.log(error);
-    return;
-  }
-
-  setLoading(true);
-
-  const callbackURL = "/";
-
-  console.log("Callback URL:", callbackURL);
-  console.log("Signup email:", email);
-
-  try {
-    const result = isSignup
-      ? await signUp.email({
-          name,
-          email,
-          password,
-          callbackURL,
-        })
-      : await signIn.email({
-          email,
-          password,
-          callbackURL,
-        })
-        toast.success('সফল ভাবে সাইনইন হয়েছে।')
-        ;
-
-    console.log("Better Auth result:", result);
-    console.log("Auth error:", result.error);
-    console.log("Returned data:", result.data);
-
-    if (result.error) {
-      toast.error(result.error.message || "অনুরোধটি সফল হয়নি।");
+    if (isSignup && password !== confirmPassword) {
+      toast.error("দুটি পাসওয়ার্ড মিলছে না।");
       console.log(error);
       return;
     }
 
-    console.log("Authentication successful!");
-    console.log("Redirecting to:", callbackURL);
+    if (password.length < 8) {
+      toast.error("পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে।");
+      console.log(error);
+      return;
+    }
 
-    router.push(callbackURL);
-    router.refresh();
-  } catch (err) {
-    console.error("Authentication exception:", err);
-    toast.error("কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।");
-  } finally {
-    setLoading(false);
-  }
-  console.log(error);
+    setLoading(true);
+
+    const callbackURL = "/";
+
+    console.log("Callback URL:", callbackURL);
+    console.log("Signup email:", email);
+
+    try {
+      const result = isSignup
+        ? await signUp.email({
+            name,
+            email,
+            password,
+            callbackURL,
+          })
+        : await signIn.email({
+            email,
+            password,
+            callbackURL,
+          });
+      toast.success("সফল ভাবে সাইনইন হয়েছে।");
+
+      console.log("Better Auth result:", result);
+      console.log("Auth error:", result.error);
+      console.log("Returned data:", result.data);
+
+      if (result.error) {
+        toast.error(result.error.message || "অনুরোধটি সফল হয়নি।");
+        console.log(error);
+        return;
+      }
+
+      console.log("Authentication successful!");
+      console.log("Redirecting to:", callbackURL);
+
+      router.push(callbackURL);
+      router.refresh();
+    } catch (err) {
+      console.error("Authentication exception:", err);
+      toast.error("কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+    } finally {
+      setLoading(false);
+    }
+    console.log(error);
   };
 
   const handleGoogleSignIn = async () => {
-    const data = await authClient.signIn.social({
-      provider:'google'
-    })
-    console.log(data);
-    toast.success('সফল ভাবে সাইন ইন হয়েছে।')
-  }
+    // const data = await authClient.signIn.social({
+    //   provider:'google'
+    // })
+    // console.log(data);
+    // toast.success('সফল ভাবে সাইন ইন হয়েছে।')
+    try {
+      const data = await authClient.signIn.social({
+        provider: "google",
+      });
 
+      console.log(data);
+      toast.success("সফলভাবে সাইন ইন হয়েছে।");
+    } catch (error) {
+      console.error("Google Sign In Error:", error);
+
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "সাইন ইন করতে সমস্যা হয়েছে। আবার চেষ্টা করো।",
+      );
+    }
+  };
+
+  // const handleGithubLogin = async () => {
+  //   const data = await authClient.signIn.social({
+  //     provider:'github'
+  //   })
+  //   console.log(data);
+  //   toast.success('সফল ভাবে সাইন ইন হয়েছে।')
+  // }
   const handleGithubLogin = async () => {
-    const data = await authClient.signIn.social({
-      provider:'github'
-    })
-    console.log(data);
-    toast.success('সফল ভাবে সাইন ইন হয়েছে।')
-  }
+    try {
+      const { data, error } = await authClient.signIn.social({
+        provider: "github",
+      });
 
+      if (error) {
+        toast.error(error.message || "GitHub দিয়ে সাইন ইন ব্যর্থ হয়েছে।");
+        return;
+      }
+
+      console.log(data);
+      toast.success("সফলভাবে সাইন ইন হয়েছে।");
+    } catch (error) {
+      console.error("GitHub Login Error:", error);
+
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "কিছু একটা সমস্যা হয়েছে। আবার চেষ্টা করো।",
+      );
+    }
+  };
 
   const inputClass =
     "w-full rounded-xl border border-gray-200 bg-[#fbfdfb] py-3 pl-11 pr-11 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10";
@@ -320,7 +356,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
           {/* Social buttons: UI only */}
           <div className="grid grid-cols-2 gap-3">
             <button
-            onClick={handleGoogleSignIn}
+              onClick={handleGoogleSignIn}
               type="button"
               className="flex items-center justify-center gap-2 rounded-xl border border-gray-200 px-3 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
             >
@@ -346,11 +382,11 @@ export default function AuthForm({ mode }: AuthFormProps) {
             </button>
 
             <button
-            onClick={handleGithubLogin}
+              onClick={handleGithubLogin}
               type="button"
               className="flex items-center justify-center gap-2 rounded-xl border border-gray-200 px-3 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
             >
-              <Image width={20} height={20} src={'/github.png'} alt="" />
+              <Image width={20} height={20} src={"/github.png"} alt="" />
               GitHub
             </button>
           </div>
