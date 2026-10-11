@@ -1,15 +1,16 @@
-// "use client";
-
 import Link from "next/link";
 import { ShoppingCart, Menu } from "lucide-react";
+import { Suspense } from "react";
 import Buttons from "./Buttons";
 import Marquee from "./Marquee";
 import NavLink from "./NavLink";
+import TodaysDate from "./TodaysDate";
 
 const Navbar = async() => {
 
     // const res = await fetch('https://api.abcz.workers.dev/api/bazardor/categories')//api-2
     // const res = await fetch('https://api.abcz.workers.dev/api/bazardor/categories') //api-2
+    "use cache";
     const res = await fetch('https://openapi.programming-hero.com/api/bazardor/categories') //api-main
     const data = await res.json()
 
@@ -21,7 +22,7 @@ const Navbar = async() => {
     //     }
     // ]
 
-    const date = new Date().toLocaleDateString('bn-BD', {dateStyle:'full'})
+    // const date = new Date().toLocaleDateString('bn-BD', {dateStyle:'full'})
 
   return (
     <div>
@@ -42,7 +43,8 @@ const Navbar = async() => {
               বাজার দর
             </span>
             <span className="mt-1 text-xs font-medium text-gray-500">
-              {date}
+              {/* {date} */}
+              <TodaysDate/>
             </span>
           </div>
         </Link>
@@ -55,7 +57,9 @@ const Navbar = async() => {
         {data.map(n => <Link href={`${n.id}`} className=" px-2" key={n.id}>{n.icon}{n.nameBn}</Link>)}
     </div> */}
     <div>
-      <NavLink data={data}/>
+      <Suspense fallback={<div className="flex gap-5 mt-5 max-w-7xl mx-auto" />}>
+        <NavLink data={data}/>
+      </Suspense>
     </div>
     <Marquee/>
     </div>

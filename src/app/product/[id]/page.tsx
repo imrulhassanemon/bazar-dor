@@ -1,6 +1,8 @@
 
 import { notFound } from "next/navigation";
 
+export const instant = false;
+
 interface Market {
   market: string;
   division: string;

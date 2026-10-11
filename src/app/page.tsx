@@ -3,10 +3,15 @@ import Link from "next/link";
 import IncreasePrice from "./component/IncreasePrice";
 import DecreasePrice from "./component/DecreasePrice";
 import AllProducts from "./component/AllProducts";
+import { connection } from "next/server";
+import TodaysDate from "./component/TodaysDate";
 
-export default function Home() {
+export const instant = false;
 
-  const todaysDate = new Date().toLocaleDateString('bn-BD',{dateStyle:'full'})
+export default async function  Home() {
+   await connection();
+
+  // const todaysDate = new Date().toLocaleDateString('bn-BD',{dateStyle:'full'})
 
   return (
     <div>
@@ -19,7 +24,8 @@ export default function Home() {
             {" "}
             <span className="inline-flex rounded-full bg-[#e1f1e6] px-4 py-1.5 text-sm font-semibold text-emerald-700 sm:text-base">
               {" "}
-              {todaysDate}
+              {/* {todaysDate} */}
+              <TodaysDate/>
             </span>{" "}
             <h1 className="mt-4 max-w-[620px] text-3xl font-extrabold leading-[1.35] tracking-tight text-[#19271e] sm:text-4xl lg:text-[44px] lg:leading-[1.25]">
               {" "}
