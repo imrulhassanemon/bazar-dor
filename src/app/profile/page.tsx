@@ -1,30 +1,21 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import {
   User,
   Mail,
   CalendarDays,
-  Dumbbell,
-  Flame,
-  Trophy,
-  Target,
   Edit3,
   Camera,
   Check,
   X,
-  Settings,
-  LogOut,
-  ChevronRight,
 } from "lucide-react";
-import { signOut, updateUser, useSession } from "@/lib/auth-client";
+import { updateUser, useSession } from "@/lib/auth-client";
 import Loading from "@/loading";
 
 interface UserProfile {
   name: string;
   email: string;
-  bio: string;
   joined: string;
 }
 
@@ -36,7 +27,6 @@ export default function ProfilePage() {
   const [user, setUser] = useState<UserProfile>({
     name: `${data?.user?.name}`,
     email: "imrul@example.com",
-    bio: "Consistency over perfection. One workout at a time.",
     joined: "September 2026",
   });
   console.log(data);
@@ -47,8 +37,7 @@ export default function ProfilePage() {
       const sessionUser: UserProfile = {
         name: data.user.name || "",
         email: data.user.email || "",
-        bio: user.bio,
-        joined: user.joined,
+        joined: user.joined || '',
       };
       setUser(sessionUser);
       setFormData(sessionUser);

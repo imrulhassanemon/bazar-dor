@@ -26,7 +26,7 @@ const Navbar = async() => {
 
   return (
     <div>
-        <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 shadow-sm backdrop-blur">
+        <header className="sticky py-2 top-0 z-50 w-full border-b border-gray-200 bg-white/95 shadow-sm backdrop-blur">
       <nav className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo and Brand */}
         <Link href="/" className="flex items-center gap-3">
