@@ -14,7 +14,7 @@ const NavLink = ({ data }: { data: CategoryNavItem[] }) => {
     const pathname = usePathname();
     return (
         <div>
-            <div className="flex gap-5 mt-5 max-w-7xl mx-auto">
+            <div className="md:flex gap-5 mt-5 max-w-7xl mx-auto">
       {data.map((n: CategoryNavItem) => {
         const isActive = pathname === `/category/${n.id}`;
 

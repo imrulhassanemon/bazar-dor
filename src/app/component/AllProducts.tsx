@@ -12,7 +12,7 @@ const AllProducts = async () => {
   return (
     <div className=" max-w-7xl mx-auto mt-5">
       <h1 className="text-2xl font-bold mb-3">সব প্রডাক্ট</h1>
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-5">
         {allProducts.map((product) => (
           <Link href={`/product/${product.id}`} key={product.id}><ProductCart  product={product} /></Link>
         ))}

@@ -94,9 +94,7 @@ export default function ProfilePage() {
         <div className="mx-auto max-w-6xl">
           {/* Header */}
           <div className="mb-8 ">
-            <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-[#CCFF00]">
-              Account
-            </p>
+
 
             <h1 className="text-3xl text-[#17251C]  font-black tracking-tight sm:text-4xl">
               আমার প্রফাইল
@@ -134,12 +132,12 @@ export default function ProfilePage() {
                   <div>
                     <h2 className="text-2xl font-bold">{user.name}</h2>
 
-                    <div className="mt-2 flex items-center gap-2 text-sm text-black">
+                    <div className="mt-2 flex items-center gap-2 text-sm text-white">
                       <Mail size={15} />
                       {user.email}
                     </div>
 
-                    <div className="mt-2 flex items-center gap-2 text-xs text-slate-500">
+                    <div className="mt-2 flex items-center gap-2 text-xs text-white">
                       <CalendarDays size={14} />
                       Joined {banglaTime}
                     </div>
@@ -154,7 +152,7 @@ export default function ProfilePage() {
                     className="flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-slate-200 transition hover:border-white/20 hover:bg-white/[0.08]"
                   >
                     <Edit3 size={17} />
-                    হালনাগাদ করুন
+                   নাম হালনাগাদ করুন
                   </button>
                 )}
               </div>

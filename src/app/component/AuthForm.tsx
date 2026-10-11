@@ -73,23 +73,23 @@ export default function AuthForm({ mode }: AuthFormProps) {
             password,
             callbackURL,
           });
-      toast.success("সফল ভাবে সাইনইন হয়েছে।");
-
-      console.log("Better Auth result:", result);
-      console.log("Auth error:", result.error);
-      console.log("Returned data:", result.data);
-
-      if (result.error) {
-        toast.error(result.error.message || "অনুরোধটি সফল হয়নি।");
-        console.log(error);
-        return;
-      }
-
-      console.log("Authentication successful!");
-      console.log("Redirecting to:", callbackURL);
-
-      router.push(callbackURL);
-      router.refresh();
+          
+          console.log("Better Auth result:", result);
+          console.log("Auth error:", result.error);
+          console.log("Returned data:", result.data);
+          
+          if (result.error) {
+            toast.error(result.error.message || "অনুরোধটি সফল হয়নি।");
+            console.log(error);
+            return;
+          }
+          
+          toast.success("সফলভাবে সাইনইন হয়েছে।");
+          console.log("Authentication successful!");
+          console.log("Redirecting to:", callbackURL);
+          
+          router.push(callbackURL);
+          router.refresh();
     } catch (err) {
       console.error("Authentication exception:", err);
       toast.error("কিছু সমস্যা হয়েছে। আবার চেষ্টা করুন।");
@@ -142,7 +142,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
       }
 
       console.log(data);
-      toast.success("সফলভাবে সাইন ইন হয়েছে।");
+      // toast.success("সফলভাবে সাইন ইন হয়েছে।");
     } catch (error) {
       console.error("GitHub Login Error:", error);
 

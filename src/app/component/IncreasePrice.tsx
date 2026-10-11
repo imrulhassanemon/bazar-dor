@@ -46,7 +46,7 @@ const IncreasePrice = async () => {
     return (
         <div className='max-w-7xl mx-auto mt-5'>
             <h1 className='text-2xl font-bold mb-3'> <span className="text-red-500">▲</span> আজ দাম বেড়েছে</h1>
-            <div className='grid grid-cols-3 gap-5'>
+            <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-5'>
                 {products.map((product) => <Link href={`/product/${product.id}`} key={product.id}>
                 <ProductCart product={product} /></Link>)}
             </div>
